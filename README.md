@@ -72,5 +72,3 @@ Just repeat step 3 — each graph is independent.
 - Visual Studio 2022 (or newer)
 - Workload: **.NET Desktop Development**
 - .NET Framework 4.8 targeting pack
-
-### Build

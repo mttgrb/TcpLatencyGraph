@@ -1,77 +1,46 @@
-# 🧪 TCP Latency Graph
-A lightweight Windows tool to measure and visualize TCP latency over time.
+# TcpLatencyGraph
 
-![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red)
-![Platform](https://img.shields.io/badge/Platform-Windows-blue)
-![Runtime](https://img.shields.io/badge/.NET-Framework%204.8-blue)
-![Status](https://img.shields.io/badge/Build-Stable-brightgreen)
+Opens a TCP connection to a host and port once a second and graphs how long the connect takes. Useful when ICMP is blocked, or when you want to know whether a specific service (RDP, SQL, a web server) is slow rather than just the host.
 
----
+## Download
 
-## 📌 License Notice
-This software is distributed in **executable form only**.
+Grab `TcpLatency.exe` from the [latest release](https://github.com/mttgrb/TcpLatencyGraph/releases/latest). Single exe, no installer, no admin rights needed.
 
-The source code is **not** available and may **not** be reverse engineered, modified, or redistributed commercially.
+## Usage
 
-You may:
-- Download and run the executable
-- Use it for personal or internal business use
-- Share the original EXE as-is
+Start it, type a hostname or IP and a port, press Enter. A graph window opens and starts measuring. You can open as many graphs as you like from the same start window, and closing the start window doesn't close the graphs. The app quits when the last window is gone.
 
-You may **not**:
-- Modify or decompile the software
-- Sell or bundle it
-- Host altered versions
+Hover over the graph to see the time and latency of a sample. The box in the top right shows min/max/avg and how many attempts failed.
 
-See **LICENSE.txt** for full details.
+A few things to know:
 
----
+- The X axis starts at 5 minutes and keeps growing, it never scrolls. Leave it running for a day and the line gets pretty dense.
+- The Y axis starts at 50 ms and grows to fit the slowest successful connect.
+- Anything that fails or takes 1 second or longer counts as a timeout and is drawn at the top of the graph.
 
-## 🚀 Download
-Latest version:  
-👉 https://github.com/mttgrb/TcpLatencyGraph/releases
+### Command line
 
-No installation required — runs standalone.
+```
+TcpLatency.exe <host> <port>
+```
 
----
+Skips the start window and opens the graph directly, e.g.
 
-## 🖥 Usage
-1. Run `TcpLatency.exe`
-2. Enter:
-   - IP address
-   - TCP Port
-3. Click **Start**
-4. A real-time graph appears showing latency in ms
+```
+TcpLatency.exe myserver.local 3389
+TcpLatency.exe 8.8.8.8 53
+```
 
----
+## Building
 
-## 📊 Features
-✔ Portable — single .exe  
-✔ No installation  
-✔ Clean, minimal interface  
-✔ Live latency graph (ms vs seconds)  
-✔ Dynamic X axis grows over time  
-✔ Dynamic Y axis (auto scales when latency spikes)  
-✔ Custom icon & title  
-✔ Extremely lightweight (< 100KB)
+Needs .NET Framework 4.8 (already on any recent Windows) and the .NET SDK, or Visual Studio with the .NET desktop workload.
 
----
+```
+dotnet build -c Release
+```
 
-## 🔧 Requirements
-- Windows 10 / 11
-- .NET Framework 4.8 (included with Windows)
+The exe ends up in `bin\Release\net48\`.
 
----
+## License
 
-## 🧑‍💻 Author
-**Mattia Gruber**  
-GitHub: https://github.com/mttgrb  
-Project: https://github.com/mttgrb/TcpLatencyGraph
-
----
-
-## 🛑 Disclaimer
-This tool is provided "as-is" without any warranty.  
-Use at your own risk.  
-Not affiliated with Microsoft or any network vendor.
-
+MIT, see [LICENSE](LICENSE).

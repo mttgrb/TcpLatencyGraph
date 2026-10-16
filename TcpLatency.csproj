@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net48</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
+		<AssemblyName>TcpLatency</AssemblyName>
+		<RootNamespace>TcpLatencyGraph</RootNamespace>
+		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Deterministic>false</Deterministic>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="app.config" />
+		<EmbeddedResource Include="Resources\icon.ico" />
+	</ItemGroup>
+
+</Project>

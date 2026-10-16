@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11205.157 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpLatency", "TcpLatency.csproj", "{A2A53757-8BCB-DF17-CC08-EB7AFB951D79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2A53757-8BCB-DF17-CC08-EB7AFB951D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A53757-8BCB-DF17-CC08-EB7AFB951D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A53757-8BCB-DF17-CC08-EB7AFB951D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A53757-8BCB-DF17-CC08-EB7AFB951D79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F2BFC51-71C4-4E6D-B682-1E3451BB7E92}
+	EndGlobalSection
+EndGlobal

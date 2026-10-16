@@ -11,31 +11,37 @@ namespace TcpLatencyGraph
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Check for command line arguments
-            if (args.Length == 2)
-            {
-                string target = args[0].Trim();
-                string portStr = args[1].Trim();
+            var options = new Options();
 
-                // Validate target and port
-                if (!string.IsNullOrWhiteSpace(target) && int.TryParse(portStr, out int port) && port > 0 && port <= 65535)
+            if (args.Length > 0)
+            {
+                CommandLine commandLine;
+                string error;
+                if (!CommandLine.TryParse(args, out commandLine, out error))
                 {
-                    // Launch graph directly
-                    GraphForm graph = new GraphForm(target, port);
-                    graph.Show();
-                    Application.Run(graph); // Use the graph as main form
+                    MessageBox.Show(error + "\n\n" + CommandLine.Usage,
+                                    "Invalid Arguments", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (commandLine.ShowHelp)
+                {
+                    MessageBox.Show(CommandLine.Usage, "TCP Latency Graph",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 else
                 {
-                    // Show error message for invalid arguments
-                    MessageBox.Show($"Invalid arguments.\n\nUsage: TcpLatency.exe <hostname/ip> <port>\n\nExamples:\n  TcpLatency.exe google.com 80\n  TcpLatency.exe 8.8.8.8 53", 
-                                    "Invalid Arguments", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    options = commandLine.Options;
+                    if (commandLine.Host != null)
+                    {
+                        // Launch graph directly
+                        Application.Run(new GraphForm(commandLine.Host, commandLine.Port, options));
+                        return;
+                    }
                 }
             }
 
             // Default behavior: show startup form
-            StartupForm startup = new StartupForm();
+            StartupForm startup = new StartupForm(options);
             startup.Show();
 
             Application.Run(); // no main form → stays alive until last closes
